@@ -1,0 +1,9 @@
+server:
+  port: 18080
+
+spring:
+  application:
+    name: mq_receiver
+
+  rabbitmq:
+    addresses: "amqps://rhzkwify:nEI94ndfnCkJXLySNceoRvh6NdaufI2p@sparrow.rmq.cloudamqp.com/rhzkwify"
