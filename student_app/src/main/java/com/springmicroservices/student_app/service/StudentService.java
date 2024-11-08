@@ -19,4 +19,8 @@ public class StudentService {
         return studentRepository.findById(studentId);
     }
 
+    public Student createStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
 }
