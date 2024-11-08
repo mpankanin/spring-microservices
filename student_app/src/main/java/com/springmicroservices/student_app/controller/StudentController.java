@@ -4,6 +4,7 @@ import com.springmicroservices.student_app.model.Student;
 import com.springmicroservices.student_app.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,8 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping
-    public ResponseEntity<Student> getStudent(long studentId) {
+    @GetMapping("/{studentId}")
+    public ResponseEntity<Student> getStudent(@PathVariable long studentId) {
         Optional<Student> optionalStudent = studentService.getStudent(studentId);
         return optionalStudent.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
