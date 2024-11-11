@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: rmq_publisher
+    name: RMQ_PUBLISHER
 
   rabbitmq:
     addresses: "amqps://rhzkwify:nEI94ndfnCkJXLySNceoRvh6NdaufI2p@sparrow.rmq.cloudamqp.com/rhzkwify"

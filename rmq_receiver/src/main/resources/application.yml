@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: mq_receiver
+    name: RMQ_RECEIVER
 
   rabbitmq:
     addresses: "amqps://rhzkwify:nEI94ndfnCkJXLySNceoRvh6NdaufI2p@sparrow.rmq.cloudamqp.com/rhzkwify"

@@ -4,6 +4,7 @@ import com.springmicroservices.student_app.model.Student;
 import com.springmicroservices.student_app.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +22,10 @@ public class StudentService {
 
     public Student createStudent(Student student) {
         return studentRepository.save(student);
+    }
+
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
     }
 
 }

@@ -1,0 +1,19 @@
+server:
+  port: 9000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: GATEWAY_APP
+
+zuul:
+  prefix: /api
+  routes:
+    student_app:
+      path: /students/**
+      service-id: student_app
+      strip-prefix: false
