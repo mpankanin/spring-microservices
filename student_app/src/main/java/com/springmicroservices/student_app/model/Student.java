@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class Student extends AbstractEntity{
 
-    @Column
+    //@Column - necessary only for customization, when it's not specified it's implicitly added with default values
     private String name;
 
-    @Column
+    //@Column
     private String surname;
 
-    @Column
+    @Column(unique = true) // added because of the customization
     private String email;
 
 }

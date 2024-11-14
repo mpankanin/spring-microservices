@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/students")
@@ -25,20 +24,19 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<List<Student>> getStudents() {
-        List<Student> students = studentService.getAllStudents();
+        List<Student> students = studentService.getStudents();
         return ResponseEntity.ok(students);
     }
 
-
     @GetMapping("/{studentId}")
     public ResponseEntity<Student> getStudent(@PathVariable long studentId) {
-        Optional<Student> optionalStudent = studentService.getStudent(studentId);
-        return optionalStudent.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Student student = studentService.getStudent(studentId);
+        return ResponseEntity.ok(student);
     }
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        Student createdStudent = studentService.createStudent(student);
+        Student createdStudent = studentService.addStudent(student);
         return ResponseEntity.ok(createdStudent);
     }
 
