@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class StudentService {
+public class StudentService implements{
 
     private final RestTemplate restTemplate;
     private final RabbitTemplate rabbitTemplate;

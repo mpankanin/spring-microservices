@@ -1,31 +1,16 @@
 package com.springmicroservices.student_app.service;
 
 import com.springmicroservices.student_app.model.Student;
-import com.springmicroservices.student_app.repository.StudentRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class StudentService {
+public interface StudentService {
 
-    private final StudentRepository studentRepository;
+    public Student getStudent(long studentId);
 
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
+    public List<Student> getStudents();
 
-    public Optional<Student> getStudent(long studentId) {
-        return studentRepository.findById(studentId);
-    }
-
-    public Student createStudent(Student student) {
-        return studentRepository.save(student);
-    }
-
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
-    }
+    public Student addStudent(Student student);
 
 }
