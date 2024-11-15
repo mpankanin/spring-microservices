@@ -1,6 +1,5 @@
 server:
   port: 9000
-
 eureka:
   client:
     service-url:
@@ -9,11 +8,10 @@ eureka:
 spring:
   application:
     name: GATEWAY_APP
-
-zuul:
-  prefix: /api
-  routes:
-    student_app:
-      path: /students/**
-      service-id: student_app
-      strip-prefix: false
+  cloud:
+    gateway:
+      routes:
+        - id: STUDENT-SERVICE
+          uri: lb://STUDENT-SERVICE
+          predicates:
+            - Path=/students/**
