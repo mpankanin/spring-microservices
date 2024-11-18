@@ -3,14 +3,12 @@ package com.springmicroservices.student_app.service;
 import com.springmicroservices.student_app.exception.PatchException;
 import com.springmicroservices.student_app.exception.student.StudentNotFoundException;
 import com.springmicroservices.student_app.model.Student;
-import com.springmicroservices.student_app.model.StudentStatus;
 import com.springmicroservices.student_app.repository.StudentRepository;
 import com.springmicroservices.student_app.util.Patcher;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -25,7 +23,7 @@ public class StudentServiceImpl implements StudentService{
     public Student getStudent(long studentId) throws StudentNotFoundException {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id:" + studentId));
-        if (StudentStatus.INACTIVE.equals(student.getStatus())) {
+        if (Student.Status.INACTIVE.equals(student.getStatus())) {
             throw new IllegalStateException("The student's status is inactive");
         }
         return student;
@@ -41,7 +39,7 @@ public class StudentServiceImpl implements StudentService{
     public void deleteStudent(long studentId) throws StudentNotFoundException{
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Provided student's id does not exist."));
-        student.setStatus(StudentStatus.INACTIVE);
+        student.setStatus(Student.Status.INACTIVE);
         studentRepository.save(student);
     }
 
@@ -75,13 +73,12 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> getStudents(String status) {
-        StudentStatus studentStatus = StudentStatus.fromString(status);
-        return studentRepository.findAllByStatus(studentStatus);
+        return studentRepository.findAllByStatus(Student.Status.valueOf(status));
     }
 
     private void validateStudentEmail(String email) throws DataIntegrityViolationException {
-        Student student = studentRepository.findByEmail(email);
-        if (student != null) {
+        boolean emailExists = studentRepository.existsByEmail(email);
+        if (emailExists) {
             throw new DataIntegrityViolationException("Provided student's email already exists.");
         }
     }

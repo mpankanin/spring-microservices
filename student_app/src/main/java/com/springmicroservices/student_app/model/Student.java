@@ -2,6 +2,8 @@ package com.springmicroservices.student_app.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,8 +26,12 @@ public class Student extends AbstractEntity{
     @Column(unique = true) // added because of the customization
     private String email;
 
-    private StudentStatus status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-
+    public enum Status {
+        ACTIVE,
+        INACTIVE
+    }
 
 }
