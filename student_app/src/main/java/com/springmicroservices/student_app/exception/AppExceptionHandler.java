@@ -29,4 +29,10 @@ public class AppExceptionHandler {
         );
     }
 
+    @ExceptionHandler ResponseEntity<ErrorEntity> handleException(PatchException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                new ErrorEntity(e.getMessage())
+        );
+    }
+
 }

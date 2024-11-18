@@ -4,6 +4,7 @@ import com.springmicroservices.student_app.exception.student.StudentNotFoundExce
 import com.springmicroservices.student_app.model.Student;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentService {
 
@@ -16,5 +17,9 @@ public interface StudentService {
     Student addStudent(Student student);
 
     void deleteStudent(long studentId) throws StudentNotFoundException;
+
+    Student updateStudent(long studentId, Student student);
+
+    Student updateStudentByFields(long studentId, Student student);
 
 }

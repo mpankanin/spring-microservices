@@ -26,4 +26,6 @@ public class Student extends AbstractEntity{
 
     private StudentStatus status;
 
+
+
 }

@@ -5,14 +5,17 @@ import com.springmicroservices.student_app.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/students")
@@ -52,6 +55,18 @@ public class StudentController {
     public ResponseEntity<Student> deleteStudent(@PathVariable long studentId) {
         studentService.deleteStudent(studentId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{studentId}")
+    public ResponseEntity<Student> updateStudent(@PathVariable long studentId, Student student) {
+        Student updatedStudent = studentService.updateStudent(studentId, student);
+        return ResponseEntity.ok(updatedStudent);
+    }
+
+    @PatchMapping("/{studentId}")
+    public ResponseEntity<Student> updateStudentByFields(@PathVariable long studentId, @RequestBody Student student) {
+        Student updatedStudent = studentService.updateStudentByFields(studentId, student);
+        return ResponseEntity.ok(updatedStudent);
     }
 
 }
