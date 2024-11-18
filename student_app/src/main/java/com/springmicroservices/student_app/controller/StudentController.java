@@ -2,6 +2,7 @@ package com.springmicroservices.student_app.controller;
 
 import com.springmicroservices.student_app.model.Student;
 import com.springmicroservices.student_app.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/students")
@@ -46,7 +46,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> createStudent(@RequestBody @Valid Student student) {
         Student createdStudent = studentService.addStudent(student);
         return ResponseEntity.ok(createdStudent);
     }
@@ -58,7 +58,7 @@ public class StudentController {
     }
 
     @PutMapping("/{studentId}")
-    public ResponseEntity<Student> updateStudent(@PathVariable long studentId, Student student) {
+    public ResponseEntity<Student> updateStudent(@PathVariable long studentId, @RequestBody @Valid Student student) {
         Student updatedStudent = studentService.updateStudent(studentId, student);
         return ResponseEntity.ok(updatedStudent);
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +27,7 @@ public class Student extends AbstractEntity{
     @Column(unique = true) // added because of the customization
     private String email;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Status status;
 
