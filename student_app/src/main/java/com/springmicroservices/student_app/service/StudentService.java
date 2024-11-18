@@ -11,6 +11,8 @@ public interface StudentService {
 
     public List<Student> getStudents();
 
+    public List<Student> getStudents(String status);
+
     public Student addStudent(Student student);
 
 }

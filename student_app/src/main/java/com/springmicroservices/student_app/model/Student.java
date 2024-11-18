@@ -24,4 +24,6 @@ public class Student extends AbstractEntity{
     @Column(unique = true) // added because of the customization
     private String email;
 
+    private StudentStatus status;
+
 }

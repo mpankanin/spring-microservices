@@ -1,4 +1,4 @@
-package com.springmicroservices.student_app.exception;
+package com.springmicroservices.student_app.exception.student;
 
 public class StudentNotFoundException extends RuntimeException{
 
