@@ -1,13 +1,13 @@
 package com.springmicroservices.student_app.service;
 
+import com.springmicroservices.student_app.exception.student.StudentNotFoundException;
 import com.springmicroservices.student_app.model.Student;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StudentService {
 
-    Student getStudent(long studentId);
+    Student getStudent(long studentId) throws StudentNotFoundException;
 
     List<Student> getStudents();
 
@@ -15,6 +15,6 @@ public interface StudentService {
 
     Student addStudent(Student student);
 
-    void deleteStudent(long studentId);
+    void deleteStudent(long studentId) throws StudentNotFoundException;
 
 }

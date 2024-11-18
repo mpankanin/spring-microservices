@@ -19,9 +19,13 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student getStudent(long studentId) {
-        return studentRepository.findById(studentId)
+    public Student getStudent(long studentId) throws StudentNotFoundException {
+        Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id:" + studentId));
+        if (StudentStatus.INACTIVE.equals(student.getStatus())) {
+            throw new IllegalStateException("The student's status is inactive");
+        }
+        return student;
     }
 
     @Override
