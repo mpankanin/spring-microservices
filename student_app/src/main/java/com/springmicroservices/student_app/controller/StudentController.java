@@ -1,9 +1,9 @@
 package com.springmicroservices.student_app.controller;
 
 import com.springmicroservices.student_app.model.Student;
-import com.springmicroservices.student_app.model.StudentStatus;
 import com.springmicroservices.student_app.service.StudentService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +46,12 @@ public class StudentController {
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         Student createdStudent = studentService.addStudent(student);
         return ResponseEntity.ok(createdStudent);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Student> deleteStudent(@PathVariable long studentId) {
+        studentService.deleteStudent(studentId);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -31,6 +31,14 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public void deleteStudent(long studentId) throws StudentNotFoundException{
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException("Provided student's id does not exist."));
+        student.setStatus(StudentStatus.INACTIVE);
+        studentRepository.save(student);
+    }
+
+    @Override
     public List<Student> getStudents() {
         return studentRepository.findAll();
     }

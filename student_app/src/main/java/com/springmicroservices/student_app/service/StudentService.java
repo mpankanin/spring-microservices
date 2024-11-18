@@ -7,12 +7,14 @@ import java.util.Optional;
 
 public interface StudentService {
 
-    public Student getStudent(long studentId);
+    Student getStudent(long studentId);
 
-    public List<Student> getStudents();
+    List<Student> getStudents();
 
-    public List<Student> getStudents(String status);
+    List<Student> getStudents(String status);
 
-    public Student addStudent(Student student);
+    Student addStudent(Student student);
+
+    void deleteStudent(long studentId);
 
 }
